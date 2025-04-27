@@ -1,0 +1,39 @@
+grafana:
+  enabled: true
+  adminUser: admin
+  adminPassword: admin
+  ingress:
+    enabled: true
+    pathType: Prefix
+    ingressClassName: nginx
+    annotations:
+      nginx.ingress.kubernetes.io/rewrite-target: /
+      kubernetes.io/tls-acme: "true"
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+    hosts:
+      - grafana.hamza.cheznouslabas.fr
+    path : /
+    tls:
+      - secretName: grafana-hamza-tls-secret # The secret where the TLS certificate will be stored
+        hosts:
+          - grafana.hamza.cheznouslabas.fr 
+
+prometheus:
+  enabled: true
+  ingress:
+    enabled: true
+    pathType: Prefix
+    ingressClassName: nginx
+    annotations:
+      nginx.ingress.kubernetes.io/rewrite-target: /
+      kubernetes.io/tls-acme: "true"
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+    hosts:
+      - prometheus.hamza.cheznouslabas.fr
+    path : /
+    tls:
+      - secretName: prometheus-hamza-tls-secret # The secret where the TLS certificate will be stored
+        hosts:
+          - prometheus.hamza.cheznouslabas.fr 
+
+  

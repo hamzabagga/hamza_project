@@ -3,12 +3,14 @@ resource "kubectl_manifest" "cluster_issuer" {
   depends_on = [ helm_release.cert_manager ]
 }
  
- resource "kubectl_manifest" "certificate_nginx" {
-  yaml_body = file("${path.root}/kubernetes/manifests/certificates/certificate-nginx.yaml")
+ resource "kubectl_manifest" "certificate_prometheus" {
+  yaml_body = file("${path.root}/kubernetes/manifests/certificates/certificate-prometheus.yaml")
   depends_on = [ kubectl_manifest.cluster_issuer ]
  }
 
-resource "kubectl_manifest" "ingress_nginx" {
-  yaml_body = file("${path.root}/kubernetes/manifests/nginx-ingress.yaml")
-  depends_on = [ kubectl_manifest.certificate_nginx ]
-}
+
+ resource "kubectl_manifest" "certificate_grafana" {
+  yaml_body = file("${path.root}/kubernetes/manifests/certificates/certificate-grafana.yaml")
+  depends_on = [ kubectl_manifest.cluster_issuer ]
+ }
+
