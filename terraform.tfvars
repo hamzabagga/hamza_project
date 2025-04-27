@@ -1,4 +1,4 @@
-vpc_name   = "med_vpc"
+vpc_name   = "hamza_vpc"
 cidr_block = "10.0.0.0/16"
 
 public_subnets = [
@@ -25,8 +25,8 @@ private_subnets = [
     availability_zone = "us-east-1b"
   }
 ]
-igw_name =  "med-igw"
+igw_name =  "hamza-igw"
 
-eip_name = "med-nat-eip"
-nat_gateway_name = "med-nat-gateway"
-cluster_name = "med-eks-cluster"
+eip_name = "hamza-nat-eip"
+nat_gateway_name = "hamza-nat-gateway"
+cluster_name = "hamza-eks-cluster"
