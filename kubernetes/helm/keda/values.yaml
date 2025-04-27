@@ -1,0 +1,24 @@
+# KEDA Helm Chart Values
+
+# Enable metrics server
+metricsServer:
+  enabled: true
+
+# Enable Prometheus metrics adapter
+prometheus:
+  enabled: true
+  serviceMonitor:
+    enabled: true
+
+# Configure the operator
+operator:
+  logLevel: debug
+  replicas: 2
+
+# Authentication for scalers
+auth:
+  podIdentity:
+    enabled: false
+  serviceAccount:
+    create: true
+    name: "keda-operator"
