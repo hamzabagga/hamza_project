@@ -46,8 +46,8 @@ module "network" {
 module "iam" {
   source = "./modules/iam"
   env = local.env
-  eks_cluster_role_name = "med-eks-cluster-role"
-  eks_node_role_name = "med-eks-node-role"
+  eks_cluster_role_name = "hamza-eks-cluster-role"
+  eks_node_role_name = "hamza-eks-node-role"
   depends_on = [ module.network]
 }
 

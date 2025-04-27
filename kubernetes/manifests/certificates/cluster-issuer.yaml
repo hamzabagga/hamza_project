@@ -7,7 +7,7 @@ spec:
     # The ACME server URL for Let's Encrypt production
     server: https://acme-v02.api.letsencrypt.org/directory
     # Your email address for Let's Encrypt notifications
-    email: mohamedaminebenticha30@gmail.com # Replace with your email
+    email: baggahamza099@gmail.com # Replace with your email
     privateKeySecretRef:
       # Name of the secret used to store the ACME account private key
       name: letsencrypt-prod
