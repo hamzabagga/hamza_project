@@ -9,6 +9,9 @@
 2.2 create private route table
 3. privionner k8s cluster in aws 
 4. install  tools inside my cluster
+
 5. deploy a microservice inside a cluster
+
+
 creer un deployment nginx et la configurer  avec keda 
 
