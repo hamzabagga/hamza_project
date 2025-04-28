@@ -21,35 +21,25 @@ spec:
         image: nginx:latest
         ports:
         - containerPort: 80
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: nginx-service
-  namespace: default
-spec:
-  selector:
-    app: nginx
-  ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 80
-  type: ClusterIP
----
-apiVersion: keda.sh/v1alpha1
-kind: ScaledObject
-metadata:
-  name: nginx-scaledobject
-  namespace: default
-spec:
-  scaleTargetRef:
-    name: nginx-deployment
-  pollingInterval: 30  # Check metrics every 30 seconds
-  cooldownPeriod: 300  # Wait 5 minutes to scale down
-  minReplicaCount: 1
-  maxReplicaCount: 10
-  triggers:
-  - type: cpu
-    metadata:
-      type: Utilization
-      value: "50"
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "200m"
+            memory: "256Mi"
+
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: nginx-service
+#   namespace: default
+# spec:
+#   selector:
+#     app: nginx
+#   ports:
+#   - protocol: TCP
+#     port: 80
+#     targetPort: 80
+#   type: ClusterIP
