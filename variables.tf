@@ -26,11 +26,11 @@ variable "private_subnets" {
   }))
 }
 variable "igw_name" {
-    type = string
-  
+  type = string
+
 }
 variable "eip_name" {
-    type = string
+  type = string
 }
 
 variable "nat_gateway_name" {
@@ -39,7 +39,7 @@ variable "nat_gateway_name" {
 
 variable "cluster_name" {
   type = string
-  
-  
+
+
 }
  

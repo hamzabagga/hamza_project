@@ -25,8 +25,8 @@ private_subnets = [
     availability_zone = "us-east-1b"
   }
 ]
-igw_name =  "hamza-igw"
+igw_name = "hamza-igw"
 
-eip_name = "hamza-nat-eip"
+eip_name         = "hamza-nat-eip"
 nat_gateway_name = "hamza-nat-gateway"
-cluster_name = "hamza-eks-cluster"
+cluster_name     = "hamza-eks-cluster"

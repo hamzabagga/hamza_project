@@ -5,7 +5,7 @@ terraform {
       version = "~> 5.0"
     }
     helm = {
-      source = "hashicorp/helm"
+      source  = "hashicorp/helm"
       version = "2.17.0"
     }
     kubernetes = {
@@ -27,13 +27,13 @@ provider "aws" {
 
 
 data "aws_eks_cluster" "my_cluster" {
-  name = var.cluster_name
-  depends_on = [ module.kubernetes ]
+  name       = var.cluster_name
+  depends_on = [module.kubernetes]
 }
 
 data "aws_eks_cluster_auth" "my_cluster" {
-  name = var.cluster_name
-  depends_on = [ module.kubernetes ]
+  name       = var.cluster_name
+  depends_on = [module.kubernetes]
 }
 
 provider "kubernetes" {
@@ -50,8 +50,8 @@ provider "kubectl" {
 
 provider "helm" {
   kubernetes {
-  host                   = data.aws_eks_cluster.my_cluster.endpoint
-  cluster_ca_certificate = base64decode(data.aws_eks_cluster.my_cluster.certificate_authority[0].data)
-  token                  = data.aws_eks_cluster_auth.my_cluster.token
+    host                   = data.aws_eks_cluster.my_cluster.endpoint
+    cluster_ca_certificate = base64decode(data.aws_eks_cluster.my_cluster.certificate_authority[0].data)
+    token                  = data.aws_eks_cluster_auth.my_cluster.token
   }
 }

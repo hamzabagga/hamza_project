@@ -1,8 +1,8 @@
 resource "kubernetes_namespace" "ingress_nginx" {
   metadata {
-    name = "ingress-nginx" 
+    name = "ingress-nginx"
   }
-  depends_on = [ module.kubernetes ]
+  depends_on = [module.kubernetes]
 }
 
 resource "helm_release" "nginx_ingress" {
@@ -12,15 +12,15 @@ resource "helm_release" "nginx_ingress" {
   repository = "https://kubernetes.github.io/ingress-nginx"
   version    = "4.12.0" # Specify the desired version
 
-  values = [file("${path.module}/kubernetes/helm/ingress-nginx/values.yaml")]
-depends_on = [ kubernetes_namespace.ingress_nginx ]
+  values     = [file("${path.module}/kubernetes/helm/ingress-nginx/values.yaml")]
+  depends_on = [kubernetes_namespace.ingress_nginx]
 }
 
 resource "kubernetes_namespace" "cert_manager" {
   metadata {
-    name = "cert-manager" 
+    name = "cert-manager"
   }
-  depends_on = [ module.kubernetes ]
+  depends_on = [module.kubernetes]
 }
 
 resource "helm_release" "cert_manager" {
@@ -29,8 +29,8 @@ resource "helm_release" "cert_manager" {
   chart      = "cert-manager"
   repository = "https://charts.jetstack.io"
   version    = "v1.12.0" # Specify the desired version
-  values = [file("${path.module}/kubernetes/helm/cert-manager/values.yaml")]
-  depends_on = [ kubernetes_namespace.cert_manager ]
+  values     = [file("${path.module}/kubernetes/helm/cert-manager/values.yaml")]
+  depends_on = [kubernetes_namespace.cert_manager]
 }
 
 resource "kubernetes_namespace" "monitoring" {
@@ -47,7 +47,7 @@ resource "helm_release" "kube_prometheus_stack" {
   repository = "https://prometheus-community.github.io/helm-charts"
   version    = "69.3.2" # Specify the desired version
 
-  values = [file("${path.module}/kubernetes/helm/kube-prometheus-stack/values.yaml")]
+  values     = [file("${path.module}/kubernetes/helm/kube-prometheus-stack/values.yaml")]
   depends_on = [kubernetes_namespace.monitoring]
 }
 
@@ -65,6 +65,6 @@ resource "helm_release" "keda" {
   repository = "https://kedacore.github.io/charts"
   version    = "2.12.0" # Specify the desired version
 
-  values = [file("${path.module}/kubernetes/helm/keda/values.yaml")]
+  values     = [file("${path.module}/kubernetes/helm/keda/values.yaml")]
   depends_on = [kubernetes_namespace.keda]
 }
