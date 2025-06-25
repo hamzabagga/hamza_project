@@ -6,6 +6,7 @@ controller:
       http: 80
       https: 443
     targetPorts:
+    
       http: 80
       https: 443
     selector:

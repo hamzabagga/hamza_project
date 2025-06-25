@@ -20,19 +20,19 @@ jobs:
 
     steps:
     # Step 1: Checkout the repository
-   
+    
     - name: Checkout code
       uses: actions/checkout@v3
 
     # Step 2: Set up Terraform
-   
+    
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
       with:
         terraform_version: 1.11.3 # Specify your Terraform version
 
     # Step 3: Configure AWS credentials
-   
+    
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v2
       with:
@@ -41,7 +41,7 @@ jobs:
         aws-region: us-east-1 # Replace with your AWS region
 
     # Step 4: Initialize Terraform
-   
+    
     - name: Terraform Init
       run: terraform init
 
@@ -51,11 +51,11 @@ jobs:
         terraform workspace select ${{ github.event.inputs.workspace }} || terraform workspace new ${{ github.event.inputs.workspace }}
 
     # Step 5: Plan Terraform changes
-   
+    
     - name: Terraform Plan Destroy
       run: terraform plan -destroy
 
     # Step 6: Apply Terraform changes
-   
+    
     - name: Terraform Destroy
       run: terraform destroy -auto-approve
